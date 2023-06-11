@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.Set;
+
 import jakarta.persistence.*;
 
 @Getter
@@ -11,7 +14,7 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     @Id
@@ -24,12 +27,13 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "user_name")
+    @Column(name = "user_name",nullable = false,unique = true)
     private String userName;
 
-    @Column(name = "email_id")
+    @Column(name = "email_id",nullable = false,unique = true)
     private String emailId;
 
-    @Column(name = "pass_word")
+    @Column(name = "password",nullable = false)
     private String password;
+
 }
