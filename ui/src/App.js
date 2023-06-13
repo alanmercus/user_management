@@ -3,13 +3,14 @@ import FooterComponent from './components/FooterComponent';
 import HeaderComponent from './components/HeaderComponent';
 import ListUserComponent from './components/ListUserComponent';
 import UserRegister from './components/UserRegister';
+import './App.css'
 
 function App() {
   return (
     <div>
       <Router>
         <HeaderComponent />
-        <div className="container">
+        <div className="app-container">
           <Routes>
             <Route path="/" element={<UserRegister />} />
             <Route path="/users" element={<ListUserComponent />} />
