@@ -2,8 +2,10 @@ package com.alanmercus.usermanagement.repository;
 
 import com.alanmercus.usermanagement.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+
 
 public interface UserRepository extends JpaRepository<User,Long> {
 
-// all crud database methods
+    Optional<User> findByUserName(String username);
 }

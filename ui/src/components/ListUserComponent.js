@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchUsers, deleteUser } from '../actions/userActions';
+import { fetchUsers, deleteUser,checkPassword } from '../actions/userActions';
 
 const ListUserComponent = () => {
   const dispatch = useDispatch();
@@ -13,6 +13,13 @@ const ListUserComponent = () => {
 
   const handleDeleteUser = (userId) => {
     dispatch(deleteUser(userId));
+  };
+  const handleCheckPassword = (userId) => {
+    // Implement password check logic here
+    const password = prompt("Please enter your password:");
+    if (password) {
+      dispatch(checkPassword(userId, password));
+    }
   };
 
   return (
@@ -49,6 +56,11 @@ const ListUserComponent = () => {
                   style={{ marginLeft: '10px' }}
                 >
                   Delete
+                </button>
+                <button className="btn btn-warning" 
+                style={{ marginLeft: '10px' }}
+                onClick={() => handleCheckPassword(user.id)}>
+                  Check Password
                 </button>
               </td>
             </tr>
