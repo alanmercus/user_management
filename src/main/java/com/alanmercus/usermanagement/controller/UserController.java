@@ -45,11 +45,11 @@ public class UserController {
         userService.deleteUser(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-    
+
     @PostMapping("/checkPassword")
-    public ResponseEntity<Boolean> checkPassword(@RequestBody Map<String, String> payload) {
-        String username = payload.get("username");
-        String password = payload.get("password");
+    public ResponseEntity<Boolean> checkPassword(@RequestBody Map<String, String> credentials) {
+        String username = credentials.get("uName");
+        String password = credentials.get("pwd");
         boolean isMatch = userService.checkPassword(username, password);
         return ResponseEntity.ok(isMatch);
     }

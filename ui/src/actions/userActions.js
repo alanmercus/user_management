@@ -50,11 +50,14 @@ export const deleteUser = createAsyncThunk('user/deleteUser', async (userId) => 
   }
 });
 
-export const checkPassword = createAsyncThunk('user/checkPassword', async (userId, password) => {
-  try {
-    const response = await UserService.checkPassword(userId, password);
-    return response.data;
-  } catch (error) {
-    throw Error(error.message);
+export const checkPassword = createAsyncThunk(
+  'user/checkPassword',
+  async ({ uName, pwd }) => {
+    try {
+      const response = await UserService.checkPassword(uName, pwd);
+      return response.data;
+    } catch (error) {
+      throw Error(error.message);
+    }
   }
-});
+);

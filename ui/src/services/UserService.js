@@ -23,6 +23,13 @@ class UserService{
     deleteUser(userId){
         return axios.delete(USER_BASE_REST_API_URL + '/' + userId);
     }
+
+    checkPassword(uName, pwd) {
+        return axios.post(USER_BASE_REST_API_URL + '/checkPassword', {
+            uName,
+            pwd
+        });
+    }
 }
 
 const userServiceInstance = new UserService();

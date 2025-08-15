@@ -14,11 +14,20 @@ const ListUserComponent = () => {
   const handleDeleteUser = (userId) => {
     dispatch(deleteUser(userId));
   };
-  const handleCheckPassword = (userId) => {
+  const handleCheckPassword = (username) => {
     // Implement password check logic here
     const password = prompt("Please enter your password:");
     if (password) {
-      dispatch(checkPassword(userId, password));
+      dispatch(checkPassword({ uName: username, pwd: password })).then((response) => {
+        if (response.payload) {
+          alert("Password is correct!");
+        } else {
+          alert("Password is incorrect!");
+        }
+      })
+      .catch((error) => {
+        alert("Error checking password: " + error.message);
+      });
     }
   };
 
@@ -59,7 +68,7 @@ const ListUserComponent = () => {
                 </button>
                 <button className="btn btn-warning" 
                 style={{ marginLeft: '10px' }}
-                onClick={() => handleCheckPassword(user.id)}>
+                onClick={() => handleCheckPassword(user.userName)}>
                   Check Password
                 </button>
               </td>
